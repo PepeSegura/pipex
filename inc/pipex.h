@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:49:54 by psegura-          #+#    #+#             */
-/*   Updated: 2022/11/28 04:18:54 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:21:04 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 
 //Check commands
 char	**only_path(char **env);
-int		try_comands(char **matrix, char *cmd);
+// int		try_comands(char **matrix, char *cmd);
+int		try_comands(char **matrix, char **cmd);
 
 //Pipex
 int		pipex(int argc, char **argv, char **env);

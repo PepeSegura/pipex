@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:03:11 by psegura-          #+#    #+#             */
-/*   Updated: 2022/11/28 04:30:16 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:50:43 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 //Constantes
 # define TRUE 	1
 # define FALSE 	0
+
+//File Descriptors
+# define STDIN	0
+# define STDOUT	1
+# define STDERR	2
 
 //Errores
 # define INVALID_CMD	-1

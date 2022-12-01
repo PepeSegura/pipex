@@ -6,7 +6,7 @@
 #    By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 20:21:59 by psegura-          #+#    #+#              #
-#    Updated: 2022/11/01 15:33:09 by psegura-         ###   ########.fr        #
+#    Updated: 2022/11/28 17:16:02 by psegura-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS_NAME = 						\
 			ft_memmove.c			\
 			ft_memchr.c				\
 			ft_memcmp.c				\
+			ft_free_matrix.c		\
 									\
 			ft_bzero.c				\
 			ft_calloc.c				\

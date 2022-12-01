@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:03:14 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/01 17:44:21 by psegura-         ###   ########.fr       */
+/*   Created: 2022/11/28 17:13:50 by psegura-          #+#    #+#             */
+/*   Updated: 2022/11/28 18:14:01 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURES_H
-# define STRUCTURES_H
+#include "libft.h"
 
-typedef struct s_argument {
-	char	***matrix;
-	int		cmd_count;
-}	t_argument;
+void	ft_free_matrix(char **matrix)
+{
+	int	i;
 
-typedef struct s_fd {
-	int	input;
-	int	output;
-}	t_fd;
-
-#endif
+	i = -1;
+	while (matrix[++i])
+		;
+	while (--i >= 0)
+		free(matrix[i]);
+	free(matrix);
+}
