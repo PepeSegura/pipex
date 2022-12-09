@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:03:11 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/01 18:37:24 by psegura-         ###   ########.fr       */
+/*   Created: 2022/12/03 16:08:57 by psegura-          #+#    #+#             */
+/*   Updated: 2022/12/09 01:16:11 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#include "pipex.h"
 
-//Constantes
-# define TRUE 	1
-# define FALSE 	0
+//fd[0] -> read
+//fd[1] -> write
+//pid_t -> id del proceso
+void	child(char *argv, char **env)
+{
+	int		fd[2];
+	pid_t	id;
 
-//File Descriptors
-# define STDIN	0
-# define STDOUT	1
-# define STDERR	2
-
-# define SPACE	' '
-
-//Errores
-# define INVALID_CMD	-1
-# define INVALID_ENV	-2
-# define INVALID_INPUT	-3
-
-#endif
+	if (pipe(fd) == -1)
+		ft_print_error();
+	id = fork();
+	if (id == CHILD)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		ft_exec(argv, env);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(id, NULL, 0);
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:49:54 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/02 18:55:57 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/09 01:27:27 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@
 //Header files
 # include "pipex.h"
 # include "libs.h"
-# include "define.h"
-# include "structures.h"
 
 //Libft
 # include "../libft/inc/libft.h"
 
-//Check commands
-// char	**only_path(char **env);
-char	*only_path(char **cmd, char **env);
-// int		try_comands(char **matrix, char *cmd);
-int		try_comands(char **matrix, char **cmd);
+//struct
+typedef struct s_fd {
+	int	input;
+	int	output;
+}	t_fd;
 
-//Pipex
-int		pipex(int argc, char **argv, char **env);
-void	ft_exec(t_argument args ,char **env);
+//Constantes
+# define SPACE	' '
+# define CHILD	0
 
-//Errors
-void	ft_print_error(int error_code, char *error_message);
+//Functions
+char	*only_path(char *cmd, char **env);
+void	child(char *argv, char **env);
+void	ft_exec(char *argv, char **env);
+
+void	ft_print_error(void);
 #endif

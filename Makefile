@@ -6,7 +6,7 @@
 #    By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 13:27:49 by psegura-          #+#    #+#              #
-#    Updated: 2022/11/29 16:15:25 by psegura-         ###   ########.fr        #
+#    Updated: 2022/12/09 01:36:56 by psegura-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = pipex
 
 SRCS =					\
 		srcs/main.c		\
+		srcs/child.c	\
 		srcs/utils.c	\
-		srcs/pipex.c	\
 		srcs/errors.c	\
 
 
@@ -29,7 +29,7 @@ CFLAGS = -Wall -Wextra -Werror -I inc -I libft
 $(NAME): $(OBJS)
 	@make -C libft
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
-	@echo "🏂 pipex Done 🏂"
+	@echo "🏂 pepex Done 🏂"
 
 all: $(NAME)
 
