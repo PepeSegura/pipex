@@ -65,3 +65,4 @@ void	ft_exec(char *argv, char **env)
 	if (execve(path, cmd, env) == -1)
 		ft_print_error();
 }
+
