@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:08:57 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/09 01:16:11 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:14:37 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	child(char *argv, char **env)
 	pid_t	id;
 
 	if (pipe(fd) == -1)
-		ft_print_error();
+		ft_perror();
 	id = fork();
 	if (id == CHILD)
 	{

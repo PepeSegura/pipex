@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:49:54 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/12 23:34:31 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:12:52 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ char	*only_path(char *cmd, char **env);
 void	child(char *argv, char **env);
 void	ft_exec(char *argv, char **env);
 
-void	ft_print_error(void);
+void	ft_perror(void);
+void	ft_print_error(char *str);
 #endif

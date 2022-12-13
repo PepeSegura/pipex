@@ -6,7 +6,7 @@
 #    By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 13:27:49 by psegura-          #+#    #+#              #
-#    Updated: 2022/12/12 23:57:03 by psegura-         ###   ########.fr        #
+#    Updated: 2022/12/13 17:07:43 by psegura-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,34 +21,40 @@ SRCS =					\
 
 
 OBJS = $(SRCS:.c=.o)
+OBJSB = $(SRCS:.c=.ob)
 
 LIB = libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I inc -I libft
-CFLAGS_BONUS = -D BONUS=1 -Wall -Wextra -Werror -I inc -I libft
 
 $(NAME): $(OBJS)
 	@make -C libft
-	# @ar -rcs $(OBJS) $(LIB) -o $(NAME)
+	@rm -rf $(OBJSB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
 	@echo "🏂 pepex Done 🏂"
 
-bonus: $(OBJS)
+%.o:%.c
+	$(CC) -D BONUS=0 $(CFLAGS) -c $< -o $@
+	
+%.ob:%.c
+	$(CC) -D BONUS=1 $(CFLAGS) -c $< -o $@
+	
+bonus: $(OBJSB)
 	@make -C libft
-	$(CC) $(CFLAGS_BONUS) $(OBJS) $(LIB) -o $(NAME)
+	@rm -rf $(OBJS)
+	$(CC) $(CFLAGS) $(OBJSB) $(LIB) -o $(NAME)
 	@echo "🏂 pepex_bonus Done 🏂"
 
 all: $(NAME)
 
-# bonus: $(BONUS)
-
 clean:
-	make clean -C libft
+	@make clean -C libft
 	@rm -rf $(OBJS)
+	@rm -rf $(OBJSB)
 
 fclean: clean
-	make fclean -C libft
+	@make fclean -C libft
 	@rm -f $(NAME)
 
 re: fclean all
