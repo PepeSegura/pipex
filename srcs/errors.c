@@ -6,15 +6,15 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 03:33:33 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/13 17:18:20 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:05:46 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_perror(void)
+void	ft_perror(char *str)
 {
-	perror("");
+	perror(str);
 	exit(EXIT_FAILURE);
 }
 

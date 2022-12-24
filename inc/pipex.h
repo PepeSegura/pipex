@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:49:54 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/13 17:12:52 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:24:36 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 //Libft
 # include "../libft/inc/libft.h"
 
-//struct
-typedef struct s_fd {
-	int	input;
-	int	output;
-}	t_fd;
-
 //Constantes
 # define SPACE	' '
 # define CHILD	0
@@ -36,15 +30,13 @@ typedef struct s_fd {
 #  define BONUS 0
 # endif
 
-//PIPEX
-void	pipex(int argc, char **argv, char **env);
-void	pipex_bonus(int argc, char **argv, char **env);
-
-//Functions
+//New pipex
+void	pipex(char **argv, char **env);
 char	*only_path(char *cmd, char **env);
-void	child(char *argv, char **env);
 void	ft_exec(char *argv, char **env);
+void	child_1(int *pipa, char **argv, char *cmd, char **env);
+void	child_2(int *pipa, char **argv, char *cmd, char **env);
 
-void	ft_perror(void);
+void	ft_perror(char *str);
 void	ft_print_error(char *str);
 #endif

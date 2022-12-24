@@ -1,0 +1,38 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    info                                               :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/23 13:04:06 by psegura-          #+#    #+#              #
+#    Updated: 2022/12/23 13:49:36 by psegura-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+int pipe(fd[2])
+	WHAT IT DOES
+		Aplica un fd de entrada/lectura en fd[0].
+		Aplica un fd de salida/escritura en fd[1].
+		
+	RETURN VALUES
+		Si el pipe se crea, devuelve 0.
+		Si pipe falla, devuelve -1 y manda el error a "errno".
+    
+	COSAS INTERESANTES
+		Un pipe que tenga uno de los lados cerrados se considera "widowed".
+		Escribir en un pipe cerrado, hace que el proceso de escritura reciba la señal "SIGPIPE".
+		"Widowing" un pipe es la unica manera de entregar un "EOF" a la lectura.
+		Despues de que el lector lea los datos en buffer leer un "widowed pipe" devuelve 0. 
+
+pid_t fork(void)
+	WHAT IT DOES
+		Crea un nuevo proceso. El nuevo proceso ("child process") es una copia exacta del ("parent process") excepto por:
+			- "child process" -> tiene un "PID" unico.
+			- "child process" -> tiene un "parent PID" distinto.
+			- "child process" -> tiene su propia copia de los FD del parent.
+	RETURN VALUES
+		Si se a funcionado, fork devuelve un valor de 0 al "child" y devuelve
+		Upon successful completion, fork() returns a value of 0 to the child process and returns the process ID of the child process to the parent process.  Otherwise, a value of -1 is returned to the parent process, no child process is
+     created, and the global variable errno is set to indicate the error.
+			

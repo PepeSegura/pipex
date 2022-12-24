@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 21:32:40 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/24 14:29:32 by psegura-         ###   ########.fr       */
+/*   Created: 2022/12/03 16:08:57 by psegura-          #+#    #+#             */
+/*   Updated: 2022/12/20 22:30:31 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+//fd[0] -> read
+//fd[1] -> write
+//pid_t -> id del proceso
+void	child(char *argv, char **env)
 {
-	if (BONUS == FALSE && argc == 5)
-		pipex(argv, env);
+	int		fd[2];
+	pid_t	id;
+
+	if (pipe(fd) == -1)
+		ft_perror();
+	id = fork();
+	if (id == CHILD)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		ft_exec(argv, env);
+	}
 	else
-		ft_print_error("Incorrect number of arguments");
-	return (0);
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+	}
 }
 
-	// else if (BONUS == TRUE && argc >= 5)
-	// 	pipex_bonus(argc, argv, env);
+		// waitpid(id, NULL, 0);

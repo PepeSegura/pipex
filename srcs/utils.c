@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:45:32 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/13 17:16:20 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:32:31 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*only_path(char *cmd, char **env)
 		i++;
 	}
 	ft_free_matrix(env_paths);
-	ft_print_error("The command does not exit");
+	ft_print_error("command not found");
 	return (EXIT_SUCCESS);
 }
 
@@ -63,5 +63,5 @@ void	ft_exec(char *argv, char **env)
 	cmd = ft_split(argv, SPACE);
 	path = only_path(cmd[0], env);
 	if (execve(path, cmd, env) == -1)
-		ft_perror();
+		ft_perror("");
 }
