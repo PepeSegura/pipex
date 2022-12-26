@@ -6,7 +6,7 @@
 #    By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 13:27:49 by psegura-          #+#    #+#              #
-#    Updated: 2022/12/13 17:07:43 by psegura-         ###   ########.fr        #
+#    Updated: 2022/12/26 18:04:41 by psegura-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,9 @@ NAME = pipex
 
 SRCS =					\
 		srcs/main.c		\
+		srcs/pipex.c	\
 		srcs/child.c	\
 		srcs/utils.c	\
-		srcs/pipex.c	\
-		srcs/errors.c	\
-
 
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCS:.c=.ob)

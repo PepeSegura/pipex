@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:45:32 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/24 14:32:31 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:11:38 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_path(char **env)
 	return (i);
 }
 
-char	*only_path(char *cmd, char **env)
+static char	*only_path(char *cmd, char **env)
 {
 	int		i;
 	char	**env_paths;
@@ -64,4 +64,16 @@ void	ft_exec(char *argv, char **env)
 	path = only_path(cmd[0], env);
 	if (execve(path, cmd, env) == -1)
 		ft_perror("");
+}
+
+void	ft_perror(char *str)
+{
+	perror(str);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_print_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(EXIT_FAILURE);
 }

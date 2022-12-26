@@ -6,25 +6,21 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:08:57 by psegura-          #+#    #+#             */
-/*   Updated: 2022/12/24 14:25:12 by psegura-         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:57:57 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//fd[0] -> read
-//fd[1] -> write
-//pid_t -> id del proceso
-
-void	child_1(int *pipa, char **argv, char *cmd, char **env)
+void	child_input(int *pipa, char **argv, char **env)
 {
-	pid_t	child1;
+	pid_t	child;
 	int		fd_input;
 
-	child1 = fork();
-	if (child1 < 0)
+	child = fork();
+	if (child < 0)
 		ft_perror("fork ");
-	if (child1 == CHILD)
+	if (child == CHILD)
 	{
 		fd_input = open(argv[1], O_RDONLY);
 		if (fd_input < 0)
@@ -32,26 +28,42 @@ void	child_1(int *pipa, char **argv, char *cmd, char **env)
 		close(pipa[0]);
 		dup2(fd_input, STDIN_FILENO);
 		dup2(pipa[1], STDOUT_FILENO);
-		ft_exec(cmd, env);
+		ft_exec(argv[2], env);
 	}
 }
 
-void	child_2(int *pipa, char **argv, char *cmd, char **env)
+void	child_output(int *pipa, char **argv, char **env, int cmd_pos)
 {
-	pid_t	child2;
+	pid_t	child;
 	int		fd_output;
 
-	child2 = fork();
-	if (child2 < 0)
+	child = fork();
+	if (child < 0)
 		ft_perror("fork ");
-	if (child2 == CHILD)
+	if (child == CHILD)
 	{
-		fd_output = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		fd_output = open(argv[cmd_pos + 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (fd_output < 0)
-			ft_perror(argv[4]);
+			ft_perror(argv[cmd_pos + 1]);
 		close(pipa[1]);
 		dup2(fd_output, STDOUT_FILENO);
 		dup2(pipa[0], STDIN_FILENO);
-		ft_exec(cmd, env);
+		ft_exec(argv[cmd_pos], env);
+	}
+}
+
+void	child_middle(int pipa[2][2], char **argv, char **env)
+{
+	pid_t	child;
+
+	child = fork();
+	if (child < 0)
+		ft_perror("fork ");
+	if (child == CHILD)
+	{
+		close(pipa[0][0]);
+		dup2(pipa[0][1], STDIN_FILENO);
+		dup2(pipa[1][0], STDOUT_FILENO);
+		ft_exec(argv[3], env);
 	}
 }
