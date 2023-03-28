@@ -23,7 +23,7 @@ int	check_path(char **env)
 			return (i);
 		i++;
 	}
-	ft_print_error("There is no PATH defined in the enviroment");
+	ft_print_error("There is no PATH defined in the enviroment\n");
 	return (i);
 }
 
@@ -61,6 +61,8 @@ void	ft_exec(char *argv, char **env)
 	char	*path;
 
 	cmd = ft_split(argv, SPACE);
+	if (!cmd || !cmd[0])
+		ft_print_error("command not found\n");
 	path = only_path(cmd[0], env);
 	if (execve(path, cmd, env) == -1)
 		ft_perror("");
